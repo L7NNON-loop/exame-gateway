@@ -113,46 +113,47 @@ export function AdminPanel({ onLogout }: AdminPanelProps) {
                 Nenhum formulário submetido ainda
               </div>
             ) : (
-              <div className="rounded-md border">
+              <div className="rounded-md border overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>ID</TableHead>
-                      <TableHead>Nome</TableHead>
-                      <TableHead>E-mail</TableHead>
-                      <TableHead>Telefone</TableHead>
-                      <TableHead>Data</TableHead>
-                      <TableHead className="text-right">Ações</TableHead>
+                      <TableHead className="w-[120px]">ID</TableHead>
+                      <TableHead className="min-w-[180px]">Nome</TableHead>
+                      <TableHead className="min-w-[180px]">E-mail</TableHead>
+                      <TableHead className="w-[130px]">Telefone</TableHead>
+                      <TableHead className="w-[100px]">Data</TableHead>
+                      <TableHead className="w-[180px] text-right">Ações</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {submissions.map((submission, index) => (
                       <TableRow key={index}>
-                        <TableCell className="font-mono text-sm">{submission.id}</TableCell>
+                        <TableCell className="font-mono text-xs">{submission.id}</TableCell>
                         <TableCell className="font-medium">{submission.nomeCompleto}</TableCell>
-                        <TableCell>{submission.email}</TableCell>
-                        <TableCell>{submission.telefonePrincipal}</TableCell>
-                        <TableCell>
+                        <TableCell className="text-sm break-all max-w-[200px]">{submission.email}</TableCell>
+                        <TableCell className="text-sm">{submission.telefonePrincipal}</TableCell>
+                        <TableCell className="text-sm whitespace-nowrap">
                           {submission.timestamp 
                             ? new Date(submission.timestamp).toLocaleDateString('pt-BR')
                             : '-'}
                         </TableCell>
-                        <TableCell className="text-right space-x-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleViewDetails(submission)}
-                          >
-                            Ver Detalhes
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleDownloadPDF(submission)}
-                          >
-                            <FileText className="mr-2 h-4 w-4" />
-                            PDF
-                          </Button>
+                        <TableCell className="text-right">
+                          <div className="flex gap-2 justify-end">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleViewDetails(submission)}
+                            >
+                              Ver Detalhes
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDownloadPDF(submission)}
+                            >
+                              <FileText className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))}
