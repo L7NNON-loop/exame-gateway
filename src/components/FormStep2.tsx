@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { FormData } from '@/types/form';
 import { generateId } from '@/lib/generateId';
 import { ref, push } from 'firebase/database';
 import { database } from '@/lib/firebase';
 import { toast } from 'sonner';
-import { Loader2 } from 'lucide-react';
+import { Loader2, AlertTriangle } from 'lucide-react';
 
 interface FormStep2Props {
   data: Omit<FormData, 'id' | 'timestamp'>;
@@ -50,6 +51,13 @@ export function FormStep2({ data, onBack }: FormStep2Props) {
         <CardDescription>Verifique seus dados antes de confirmar</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
+        <Alert className="border-red-500/50 bg-red-500/10">
+          <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-500" />
+          <AlertDescription className="text-red-600 dark:text-red-400">
+            Por razões de segurança, aconselhamos que não partilhe esse link para evitar exclusão.
+          </AlertDescription>
+        </Alert>
+
         <div className="rounded-lg border border-border bg-muted/50 p-4 space-y-3">
           <div className="grid grid-cols-2 gap-2">
             <span className="text-sm font-medium text-muted-foreground">ID:</span>
