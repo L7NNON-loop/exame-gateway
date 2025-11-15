@@ -90,7 +90,7 @@ export function FormStep2({ data, onBack }: FormStep2Props) {
           
           <div className="grid grid-cols-2 gap-2">
             <span className="text-sm font-medium text-muted-foreground">E-mail:</span>
-            <span className="text-sm">{data.email}</span>
+            <span className="text-[10px] break-all">{data.email}</span>
           </div>
         </div>
 
